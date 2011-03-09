@@ -2,7 +2,7 @@
 Como o firewall da nossa universidade bloqueia a porta 22, utilizada por padrão para acesso ao GitHub, basta salvar as linhas a seguir um arquivo "config" dentro da pasta ".ssh" modificando o "github_username_here" pelo seu usuário.
 */
 
-Host githubcorkscrew
+Host githubssl
   Port 443
   Hostname ssh.github.com
   User github_username_here
