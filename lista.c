@@ -9,7 +9,7 @@ typedef struct{
     char Nome[50];
 }pessoa;
 
-// Criando o tipo Apontador, que é um ponteiro que aponta para o tipo celula
+// Criando o tipo Apontador, que Ã© um ponteiro que aponta para o tipo celula
 typedef struct celula *Apontador;
 
 //Redefine celula e define a estrutura , criando o tipo Celula
@@ -19,17 +19,17 @@ typedef struct celula{
     Apontador Ant;
 }Celula;
 
-//Cria a estrutura TipoLista, que terá dois apontadores para ter
-// a referência do inicio e fim da lista
+//Cria a estrutura TipoLista, que terÃ¡ dois apontadores para ter
+// a referÃªncia do inicio e fim da lista
 typedef struct{
     Apontador Primeiro;
     Apontador Ultimo;
 }TipoLista;
 
 
-//Função que inicializa a lista (deve ser utilizada no inicio do main)
+//FunÃ§Ã£o que inicializa a lista (deve ser utilizada no inicio do main)
 void IniciarLista(TipoLista *Lista){
-	//Aloca(cria) a celula cabeça
+	//Aloca(cria) a celula cabeÃ§a
     Lista->Primeiro = (Apontador) malloc(sizeof(Celula));
     // O ponteiro Prox do Primeiro ainda nao aponta a lugar algum
     Lista->Primeiro->Prox = NULL;
@@ -39,47 +39,47 @@ void IniciarLista(TipoLista *Lista){
     Lista->Ultimo = Lista->Primeiro;
 }
 
-//Função que testa se a lista possui celulas além da cabeça
+//FunÃ§Ã£o que testa se a lista possui celulas alÃ©m da cabeÃ§a
 int TesteListaVazia(TipoLista Lista){
-	//Caso a lista esteja "vazia" retorna 1, caso contrário, 0
+	//Caso a lista esteja "vazia" retorna 1, caso contrÃ¡rio, 0
 	return(Lista.Primeiro == Lista.Ultimo);
 }
 
-//Função que insere uma celula à lista
-//Como a lista será alterada é necessário um ponteiro
-//O segundo parâmetro terá o conteúdo (Item) da nova célula
+//FunÃ§Ã£o que insere uma celula Ã  lista
+//Como a lista serÃ¡ alterada Ã© necessÃ¡rio um ponteiro
+//O segundo parÃ¢metro terÃ¡ o conteÃºdo (Item) da nova cÃ©lula
 void Insere(TipoLista *Lista, pessoa X){
     //cria um ponteiro auxiliar para trocas
     Apontador aux;
-    //aux apontará para a última posição da lista
+    //aux apontarÃ¡ para a Ãºltima posiÃ§Ã£o da lista
     aux=Lista->Ultimo;
 
-    //Aloca uma nova célula onde o Prox do Ultimo aponta
+    //Aloca uma nova cÃ©lula onde o Prox do Ultimo aponta
     Lista->Ultimo->Prox = (Apontador) malloc(sizeof(Celula));
-    //O novo Ultimo será a nova célula alocada
+    //O novo Ultimo serÃ¡ a nova cÃ©lula alocada
     Lista->Ultimo = Lista->Ultimo->Prox;
-    //O ponteiro Ant apontará para o antigo último
+    //O ponteiro Ant apontarÃ¡ para o antigo Ãºltimo
     Lista->Ultimo->Ant = aux;
-    //O conteúdo da célula(Item) recebe X
+    //O conteÃºdo da cÃ©lula(Item) recebe X
     Lista->Ultimo->Item = X;
-    //O ponteiro Prox do Ultimo apontará para NULL
+    //O ponteiro Prox do Ultimo apontarÃ¡ para NULL
     Lista->Ultimo->Prox= NULL;
 
 }
 
-//Função que imprime a lista do Primeiro ao Ultimo
+//FunÃ§Ã£o que imprime a lista do Primeiro ao Ultimo
 void Imprime(TipoLista Lista){
     Apontador aux;
-    // o "i" será utilizado para mostrar a posição da célula
+    // o "i" serÃ¡ utilizado para mostrar a posiÃ§Ã£o da cÃ©lula
     int i=1;
-    // aux aponta para o próximo da lista cabeça
+    // aux aponta para o prÃ³ximo da lista cabeÃ§a
     aux = Lista.Primeiro->Prox;
 
-    //loop que percorre a lista enquanto aux não apontar para NULL(fim da lista)
+    //loop que percorre a lista enquanto aux nÃ£o apontar para NULL(fim da lista)
     while(aux !=NULL){
         printf("\n\n Celula %d \n Idade: %d\n Nome : %s ",i,aux->Item.Idade,aux->Item.Nome);
         i++;
-        //aux apontará para a célula seguinte
+        //aux apontarÃ¡ para a cÃ©lula seguinte
         aux = aux->Prox;
     }
 }
@@ -89,9 +89,9 @@ void Retira(TipoLista *Lista, char *nome){
     int op,parar=0;
 
     tmp = Lista->Primeiro;
-    aux = tmp->prox;
+    aux = tmp->Prox;
     while(aux!=NULL){
-        if(strcmpi(aux->Item.nome,nome) == 0){
+        if(strcmpi(aux->Item.Nome,nome) == 0){
             printf("\n Nome: %s \n Idade: %d\n Deseja retirar? \n [1] Sim \t [2] Nao",nome,aux->Item.Idade);
             while(1){
                 if( scanf("%d",&op) == 0 ){
