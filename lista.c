@@ -7,15 +7,15 @@
 // Criando a estrutura pessoa, correspondente ao conteudo da celula
 typedef struct{
     int Idade;
-    char Nome[50];
-}pessoa;
+    char Nome[51];
+}Pessoa;
 
 // Criando o tipo Apontador, que é um ponteiro que aponta para o tipo celula
 typedef struct celula *Apontador;
 
 //Redefine celula e define a estrutura , criando o tipo Celula
 typedef struct celula{
-    pessoa Item;
+    Pessoa Item;
     Apontador Prox;
     Apontador Ant;
 }Celula;
@@ -49,7 +49,7 @@ int TesteListaVazia(TipoLista Lista){
 //Função que insere uma celula à lista
 //Como a lista será alterada é necessário um ponteiro
 //O segundo parâmetro terá o conteúdo (Item) da nova célula
-void Insere(TipoLista *Lista, pessoa X){
+void Insere(TipoLista *Lista, Pessoa X){
     //cria um ponteiro auxiliar para trocas
     Apontador aux;
     //aux apontará para a última posição da lista
@@ -140,10 +140,80 @@ void Retira(TipoLista *Lista, char *nome){
 
 void DesalocarLista(TipoLista *Lista){
     Apontador aux,tmp;
+
+    tmp = Lista->Ultimo;
+    aux = tmp->Ant;
+    while(aux != Lista->Primeiro){
+
+        Lista->Ultimo = aux;
+        aux = aux->Ant;
+        free(tmp);
+        tmp = Lista->Ultimo;
+        printf("\n ok");
+    }
+    free(aux);
+    printf("\n ok");
 }
 
 
 
 int main() {
+    int i,j,op;
+    Pessoa cadastro;
+    TipoLista Relacao;
+
+    IniciarLista(&Relacao);
+
+    while(1){
+
+        system("cls");
+        printf("\n Menu \n\n [1] Cadastrar \n [2] Remover Cadastro \n [3] Listar cadastros \n [4] Limpar \n [5] Sair \n\n Opcao: ");
+
+        while(1){
+            if( scanf("%d",&op) == 0){
+                printf("\n Tente novamente");
+                fflush(stdin);
+                continue;
+            }
+            if(op >=1 && op <=5 ){
+                break;
+            }
+            printf("\n Tente novamente");
+        }
+        if (op == 1){
+            system("cls");
+            printf("\n Digite: \n Nome: ");
+            fflush(stdin);
+            scanf("%50[^\n]",cadastro.Nome);
+            printf("\n Idade: ");
+            fflush(stdin);
+            scanf("%d",&cadastro.Idade);
+
+            Insere(&Relacao,cadastro);
+            getch();
+        }
+        if( op == 2){
+            system("cls");
+            printf("\n Digite o nome do cadastro que deseja remover: ");
+            fflush(stdin);
+            scanf("%50[^\n]",cadastro.Nome);
+            Retira(&Relacao,cadastro.Nome);
+            getch();
+        }
+        if( op == 3){
+            Imprime(Relacao);
+            getch();
+        }
+        if( op == 4){
+            DesalocarLista(&Relacao);
+            getch();
+        }
+        if( op == 5){
+            break;
+        }
+    }
+
+
+    DesalocarLista(&Relacao);
 	return(0);
 }
