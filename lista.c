@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 
+
 // Criando a estrutura pessoa, correspondente ao conteudo da celula
 typedef struct{
     int Idade;
@@ -72,6 +73,12 @@ void Imprime(TipoLista Lista){
     Apontador aux;
     // o "i" será utilizado para mostrar a posição da célula
     int i=1;
+
+    if(TesteListaVazia(Lista) == 1){
+        printf("\n Lista vazia!!\n");
+        return;
+    }
+
     // aux aponta para o próximo da lista cabeça
     aux = Lista.Primeiro->Prox;
 
@@ -85,8 +92,13 @@ void Imprime(TipoLista Lista){
 }
 
 void Retira(TipoLista *Lista, char *nome){
-    Apontador aux,tmp;
-    int op,parar=0;
+    Apontador aux,tmp,q;
+    int op;
+
+    if(TesteListaVazia(*Lista) == 1){
+        printf("\n Lista vazia!!\n");
+        return;
+    }
 
     tmp = Lista->Primeiro;
     aux = tmp->Prox;
@@ -95,13 +107,20 @@ void Retira(TipoLista *Lista, char *nome){
             printf("\n Nome: %s \n Idade: %d\n Deseja retirar? \n [1] Sim \t [2] Nao",nome,aux->Item.Idade);
             while(1){
                 if( scanf("%d",&op) == 0 ){
+                    fflush(stdin);
                     printf("\n Digite novamente: ");
                     continue;
                 }
+
                 if(op == 1){
+                    tmp->Prox = aux->Prox;
+                    q = aux;
 
-
-                    parar=1;
+                    aux = aux->Prox;
+                    aux->Ant= tmp;
+                    free(q);
+                    printf("\n Celula retirada.");
+                    return;
                 }
                 else if(op == 2){
 
@@ -111,10 +130,19 @@ void Retira(TipoLista *Lista, char *nome){
                     printf("\n Digite novamente");
                 }
             }
-            if(parar==1) break;
+
         }
+        tmp = aux;
+        aux = aux->Prox;
     }
+    printf("\n Item nao encontrado.");
 }
+
+void DesalocarLista(TipoLista *Lista){
+    Apontador aux,tmp;
+}
+
+
 
 int main() {
 	return(0);
