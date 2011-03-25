@@ -138,21 +138,28 @@ void Retira(TipoLista *Lista, char *nome){
     printf("\n Item nao encontrado.");
 }
 
-void DesalocarLista(TipoLista *Lista){
+void DesalocarLista(TipoLista *Lista, int op){
     Apontador aux,tmp;
+
+    if(TesteListaVazia(*Lista) == 1){
+        printf("\n Lista vazia!!\n");
+        return;
+    }
 
     tmp = Lista->Ultimo;
     aux = tmp->Ant;
-    while(aux != Lista->Primeiro){
-
+    while(aux != NULL){
         Lista->Ultimo = aux;
         aux = aux->Ant;
         free(tmp);
         tmp = Lista->Ultimo;
         printf("\n ok");
     }
-    free(aux);
-    printf("\n ok");
+    free(tmp);
+    if (op != 0) {
+		IniciarLista(Lista);
+    }
+    printf("\n Lista desalocada.");
 }
 
 
@@ -205,7 +212,7 @@ int main() {
             getch();
         }
         if( op == 4){
-            DesalocarLista(&Relacao);
+            DesalocarLista(&Relacao,1);
             getch();
         }
         if( op == 5){
@@ -213,7 +220,6 @@ int main() {
         }
     }
 
-
-    DesalocarLista(&Relacao);
+    DesalocarLista(&Relacao,0);
 	return(0);
 }
