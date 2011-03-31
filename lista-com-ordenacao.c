@@ -1,6 +1,7 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 
@@ -253,6 +254,8 @@ void InsercaoLista(TipoLista *Lista) {
             tmp = tmp->Prox;
             aux2 = tmp->Ant;
             tmp->Item = aux2->Item;
+            tmp = tmp->Ant;
+            tmp = tmp->Ant;
 
         }
         tmp = tmp->Prox;
