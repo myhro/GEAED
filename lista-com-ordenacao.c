@@ -163,6 +163,23 @@ void DesalocarLista(TipoLista *Lista, int op){
     printf("\n Lista desalocada.");
 }
 
+int ContaCelula(TipoLista Lista){
+    Apontador aux;
+    int i=1;
+
+    if(TesteListaVazia(Lista) == 1){
+        printf("\n Lista vazia!!\n");
+        return 0;
+    }
+
+    aux = Lista.Primeiro->Prox;
+
+    while(aux !=NULL){
+        i++;
+        aux = aux->Prox;
+    }
+    return i;
+}
 
 
 int main() {
@@ -250,7 +267,7 @@ void InsercaoLista(TipoLista *Lista) {
 	while(aux != NULL){
         x = aux->Item;
         tmp = aux->Ant;
-        while( tmp != Lista->Primeiro && strcmp(tmp->Item.Nome, x.Nome) > 0 ){
+        while( tmp != Lista->Primeiro && strcmpi(tmp->Item.Nome, x.Nome) > 0 ){
             tmp = tmp->Prox;
             aux2 = tmp->Ant;
             tmp->Item = aux2->Item;
@@ -264,5 +281,71 @@ void InsercaoLista(TipoLista *Lista) {
 	}
 
 }
+
+void shellsort(int *vet, int n) {
+    int i, j, tmp;
+    int h = 1;
+    do {
+        h = 3 * h + 1;
+    } while(h < n);
+    do {
+	h /= 3;
+	for(i = h; i < n; i++) {
+            tmp = vet[i];
+            j = i - h;
+            while (j >= 0 && tmp < vet[j]) {
+                vet [j + h] = vet[j];
+                j -= h;
+            }
+            vet [j + h] = tmp;
+        }
+    } while ( h > 1);
+}
+
+void ShellLista(TipoLista *Lista) {
+    Apontador aux,aux2,tmp;
+    Pessoa x;
+    int h = 1, n, i;
+    n = ContaCelulas(*Lista);
+    do{
+        h = 3 * h + 1;
+    }while(h < n);
+    h /= 3;
+    i=1;
+    aux = Lista->Primeiro->Prox;
+    while(aux != NULL){
+        if(i==h){
+            break;
+        }
+        aux = aux->Prox;
+        i++;
+    }
+    while( aux != NULL){
+        x = aux->Item;
+        tmp = Posicao(*Lista,aux,h);
+        while(tmp != Lista->Primeiro && strcmpi(tmp->Item.Nome, x.Nome) > 0 )
+
+        aux = aux->Prox;
+    }
+
+
+
+}
+Apontador Posicao(TipoLista Lista, Apontador i, int h){
+    Apontador aux;
+    int posicao = 0;
+    if(h == 0){
+        return i;
+    }
+    while(i != Lista->Primeiro ){
+        if( h == posicao){
+            return i;
+        }
+        posicao++;
+        i = i->Ant;
+    }
+    return i->Prox;
+}
+
 
 
