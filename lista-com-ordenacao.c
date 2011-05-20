@@ -28,7 +28,9 @@ typedef struct{
     Apontador Ultimo;
 }TipoLista;
 
+void ShellLista(TipoLista *Lista);
 void InsercaoLista(TipoLista *Lista);
+Apontador VoltaPosicao(TipoLista Lista, Apontador i, int h);
 //Função que inicializa a lista (deve ser utilizada no inicio do main)
 void IniciarLista(TipoLista *Lista){
 	//Aloca(cria) a celula cabeça
@@ -90,6 +92,7 @@ void Imprime(TipoLista Lista){
         //aux apontará para a célula seguinte
         aux = aux->Prox;
     }
+    printf("\n -------------------------------\n");
 }
 
 void Retira(TipoLista *Lista, char *nome){
@@ -237,8 +240,10 @@ int main() {
             break;
         }
         if( op == 6){
-            InsercaoLista(&Relacao);
+            //InsercaoLista(&Relacao);
+            ShellLista(&Relacao);
             printf("\n lista ordenada");
+            getch();
         }
     }
 
@@ -305,39 +310,51 @@ void shellsort(int *vet, int n) {
 void ShellLista(TipoLista *Lista) {
     Apontador aux,aux2,tmp;
     Pessoa x;
-    int h = 1, n, i;
-    n = ContaCelulas(*Lista);
+    int h = 1, n, i,insere=0;
+    n = ContaCelula(*Lista);
     do{
         h = 3 * h + 1;
     }while(h < n);
-    h /= 3;
-    i=1;
-    aux = Lista->Primeiro->Prox;
-    while(aux != NULL){
-        if(i==h){
+    do{
+        h /= 3;
+        /*if(h==1){
+            printf("\n\n Insercao\n");
+            InsercaoLista(Lista);
             break;
+        }*/
+        i=1;
+        aux = Lista->Primeiro->Prox;
+        while(aux != NULL){
+            if(i==h){
+                break;
+            }
+            aux = aux->Prox;
+            i++;
         }
-        aux = aux->Prox;
-        i++;
-    }
-    while( aux != NULL){
-        x = aux->Item;
-        tmp = Posicao(*Lista,aux,h);
-        while(tmp != Lista->Primeiro && strcmpi(tmp->Item.Nome, x.Nome) > 0 )
-
-        aux = aux->Prox;
-    }
-
+        while( aux != NULL){
+            x = aux->Item;
+            aux2=aux;
+            tmp = VoltaPosicao(*Lista,aux,h);
+            aux=aux2;
+            while(tmp != Lista->Primeiro && strcmpi(tmp->Item.Nome, x.Nome) > 0 ){
+                aux->Item = tmp->Item;
+                //tmp=tmp->Ant;
+            }
+            tmp->Item = x;
+            aux = aux->Prox;
+            Imprime(*Lista);
+        }
+    }while(h>1);
 
 
 }
-Apontador Posicao(TipoLista Lista, Apontador i, int h){
+Apontador VoltaPosicao(TipoLista Lista, Apontador i, int h){
     Apontador aux;
     int posicao = 0;
     if(h == 0){
         return i;
     }
-    while(i != Lista->Primeiro ){
+    while(i != Lista.Primeiro ){
         if( h == posicao){
             return i;
         }
@@ -346,6 +363,7 @@ Apontador Posicao(TipoLista Lista, Apontador i, int h){
     }
     return i->Prox;
 }
+
 
 
 
