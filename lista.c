@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-
 // Criando a estrutura pessoa, correspondente ao conteudo da celula
 typedef struct{
     int Idade;
@@ -26,7 +24,6 @@ typedef struct{
     Apontador Primeiro;
     Apontador Ultimo;
 }TipoLista;
-
 
 //Função que inicializa a lista (deve ser utilizada no inicio do main)
 void IniciarLista(TipoLista *Lista){
@@ -116,8 +113,16 @@ void Retira(TipoLista *Lista, char *nome){
                     tmp->Prox = aux->Prox;
                     q = aux;
 
-                    aux = aux->Prox;
-                    aux->Ant= tmp;
+                    if (aux->Prox == NULL) {
+						Lista->Ultimo = tmp;
+					}
+					else {
+						aux = aux->Prox;
+						aux->Ant = q->Ant;
+					}
+
+                    //aux = aux->Prox;
+                    //aux->Ant= tmp;
                     free(q);
                     printf("\n Celula retirada.");
                     return;
@@ -161,7 +166,6 @@ void DesalocarLista(TipoLista *Lista, int op){
     }
     printf("\n Lista desalocada.");
 }
-
 
 
 int main() {
