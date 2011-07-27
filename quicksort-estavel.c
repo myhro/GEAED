@@ -1,9 +1,15 @@
+/*
+ Universidade Estadual de Montes Claros - Unimontes
+ GEAED - Grupo de Estudos em Algoritmos e Estrutura de Dados
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 #define TAM 10
 
+// Protótipos de Funções
 int *Qsort(int *v, int n);
 void Concatena(int *v, int n, int *menor,int Nme, int pivo, int *maior,int Nma);
 void Imprime(int *v,int n);
@@ -13,6 +19,7 @@ int passo=0;
 int main(){
     int vet[TAM];
     int i;
+
 
     srand(time(NULL));
     for(i=0; i<TAM; i++){
@@ -24,11 +31,14 @@ int main(){
 
     printf("\n\n Vetor : ");
     Imprime(vet,TAM);
+
     printf("\n\n PASSOS \n ");
     Qsort(vet,TAM);
+
     printf("\n\n Ordenado : ");
     Imprime(vet,TAM);
     printf("\n\n");
+
     return 0;
 }
 
@@ -74,8 +84,6 @@ void Concatena(int *v, int n, int *menor,int Nme, int pivo, int *maior,int Nma){
     for(j=0; j<Nma && maior != NULL; j++,i++)
         v[i]=maior[j];
 
-
-
 }
 
 void Imprime(int *v,int n){
@@ -94,4 +102,3 @@ void Imprime(int *v,int n){
     printf("]  ");
 
 }
-
