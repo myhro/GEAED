@@ -1,7 +1,7 @@
 /*
  Universidade Estadual de Montes Claros - Unimontes
  GEAED - Grupo de Estudos em Algoritmos e Estruturas de Dados
- DescriÁ„o: AlocaÁ„o din‚mica em um vetor ext·tico
+ Descri√ß√£o: Aloca√ß√£o din√¢mica em um vetor ext√°tico
 */
 
 #include<conio.h>
