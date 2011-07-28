@@ -1,3 +1,9 @@
+/*
+ Universidade Estadual de Montes Claros - Unimontes
+ GEAED - Grupo de Estudos em Algoritmos e Estrutura de Dados
+ Descrição: Árvore SBB
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/time.h>
