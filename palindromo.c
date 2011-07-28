@@ -2,7 +2,7 @@
  Universidade Estadual de Montes Claros - Unimontes
  GEAED - Grupo de Estudos em Algoritmos e Estruturas de Dados
 
- Descrição: Verifica se uma determinada frase é um palindromo,
+ DescriÃ§Ã£o: Verifica se uma determinada frase Ã© um palindromo,
             percorrendo o vetor da direita para a esquerda e vice-versa
             comparando letra por letra enquanto as variaveis que o
             percorrem nao se encontrem (meio da palavra).
