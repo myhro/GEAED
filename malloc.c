@@ -1,7 +1,7 @@
 /*
  Universidade Estadual de Montes Claros - Unimontes
  GEAED - Grupo de Estudos em Algoritmos e Estruturas de Dados
- Descrição: Alocação dinâmica em um vetor extático
+ Descrição: Alocação dinâmica em um vetor estático
 */
 
 #include<conio.h>
