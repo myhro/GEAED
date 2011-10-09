@@ -1,0 +1,10 @@
+GEAED
+=====
+
+Aqui estão os códigos-fonte criados ou utilizados nas reuniões do [Grupo de Estudos em Algoritmos e Estruturas de Dados](http://geaed.org).
+
+### Reuniões
+
+As reuniões do Grupo atualmente estão sendo realizadas nas quintas e sextas-feiras às 17h00m no CCET / UNIMONTES.
+
+Para mais informações sobre o formato atual, visite: http://blog.myhro.info/2011/08/as-maravilhas-das-telecomunicacoes/
